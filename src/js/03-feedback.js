@@ -1,4 +1,4 @@
-import { onThrottle } from './fn';
+import throttle from 'lodash.throttle';
 
 const form = document.querySelector('.feedback-form');
 const localData = JSON.parse(localStorage.getItem('feedback-form-state'));
@@ -8,7 +8,7 @@ if (localData) {
   form.message.value = localData.message;
 }
 
-form.addEventListener('input', onThrottle(onInput, 500));
+form.addEventListener('input', throttle(onInput, 500));
 form.addEventListener('submit', onSubmit);
 
 function onInput() {
